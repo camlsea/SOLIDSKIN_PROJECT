@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+    <!-- controllers -->   
+ 		
+ 	<bean id="newsBoardController" 
+ 		class="com.newsboard.controller.NewsBoardController" />
+ 		
+	<bean id="answerboardController"
+    	class="com.answerboard.controller.AnswerBoardController" />
+    
+<!-- 	<bean class="kr.spring.tiles.controller.Menu1Controller"/>
+	<bean class="kr.spring.tiles.controller.Menu2Controller"/>	
+	<bean class="kr.spring.tiles.controller.Menu3Controller"/>  -->
+	  	   	
+    <!-- viewResolver -->
+    <bean id="vewResolver"
+    	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> 	
+   		<property name="prefix" value="/WEB-INF/" />
+   		<property name="suffix" value=".jsp" />
+   	</bean>
+   	
+   	<!-- validation massage -->
+    <bean id="messageSource"
+    	class="org.springframework.context.support.ResourceBundleMessageSource">
+    	<property name="basenames">
+    		<list>
+    			<value>com.common.config.validation</value>
+    		</list>
+    	</property>	
+    </bean>  
+   	
+   	<!-- interceptor -->
+   	<bean id="multipartResolver"
+   		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   	</bean>
+   	
+   	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="order" value="1" />
+	</bean> 
+	
+	<bean id="selectedAnnotationHandlerMapping" class="org.springplugins.web.SelectedAnnotationHandlerMapping">
+     <property name="order" value="0" />
+    <property name="urls">
+    <list>
+     <value>/newsboard/newsWrite.do</value>
+     <value>/answerboard/answerWrite.do</value>
+    </list>
+    </property>
+
+    <property name="interceptors">
+    <list>
+    <ref bean="sessionInterceptor"/>
+    </list>
+    </property>
+    </bean>
+	 	
+   	
+   	<bean id="sessionInterceptor" class="com.login.intercepter.SessionInterceptor" />
+
+</beans>
