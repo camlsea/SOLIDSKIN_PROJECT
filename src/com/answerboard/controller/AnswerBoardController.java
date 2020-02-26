@@ -30,7 +30,7 @@ import com.answerboard.service.AnswerBoardService;
 public class AnswerBoardController {
 	// DI
 	private ApplicationContext context = new ClassPathXmlApplicationContext("/com/common/config/applicationContext.xml");
-	private AnswerBoardService boardService = (AnswerBoardService) context.getBean("fboardService");
+	private AnswerBoardService boardService = (AnswerBoardService) context.getBean("answerboardService");
 	//
 	// * User variable
 	// article, page variables
