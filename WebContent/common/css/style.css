@@ -500,6 +500,10 @@ ul {
 /*------------------------
   Testimonial section
 --------------------------*/
+.testl{
+	 width: 250px; height:80px; float:left; 
+}
+
 .testimonial-section {
     margin-top: 220px;
 	padding-top: 100px;
